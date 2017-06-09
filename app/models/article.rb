@@ -4,4 +4,6 @@ class Article < ApplicationRecord
 
   # Order the articles with the newest first
   default_scope { order(created_at: :desc) }
+
+  belongs_to :user
 end

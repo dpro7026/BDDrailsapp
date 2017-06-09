@@ -11,8 +11,9 @@ class ArticlesController < ApplicationController
 
   def create
     @article = Article.new(article_params)
+    @article.user = current_user
     if @article.save
-      flash[:success] = "Article has been created"
+      flash[:notice] = "Article has been created"
       redirect_to articles_path
     else
       flash.now[:danger] = "Article has not been created"
@@ -28,7 +29,7 @@ class ArticlesController < ApplicationController
 
   def update
     if @article.update(article_params)
-      flash[:success] = "Article has been updated"
+      flash[:notice] = "Article has been updated"
       redirect_to @article
     else
       flash.now[:danger] = "Article has not been updated"
@@ -38,7 +39,7 @@ class ArticlesController < ApplicationController
 
   def destroy
     if @article.destroy
-      flash[:success] = "Article has been deleted"
+      flash[:notice] = "Article has been deleted"
       redirect_to articles_path
     end
   end
